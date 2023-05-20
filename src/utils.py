@@ -24,12 +24,13 @@ def prepare_list(raw_json):
     key_date = 'date'
     key_from = 'from'
     for j_rec in raw_json:
-        if dict(j_rec).get(key_date) and dict(j_rec).get(key_from):
-            normalized_j_list.append(j_rec)
+        if type(j_rec) is dict:
+            if dict(j_rec).get(key_date) and dict(j_rec).get(key_from):
+                normalized_j_list.append(j_rec)
     return normalized_j_list
 
 
-def make_sorted_ops(raw_json):
+def sort_recs_by_date(raw_json):
     """
     Сортировка данных по дате
     и времени по убыванию
@@ -71,5 +72,5 @@ def print_data():
     pass
 
 
-x = make_sorted_ops(prepare_list(get_json_data(JSON_DATA_PATH)))
+x = sort_recs_by_date(prepare_list(get_json_data(JSON_DATA_PATH)))
 print(formatted_date(x[0]))
