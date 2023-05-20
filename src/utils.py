@@ -1,5 +1,5 @@
 import json
-
+from datetime import date
 
 def get_json_data():
     """
@@ -38,14 +38,36 @@ def make_sorted_ops(raw_json):
     return operation_date_time
 
 
-def formatted_data():
-    pass
+def formatted_data(json_rec):
+    j_rec = dict(json_rec)
+    # форматируем дату для вывода
+    transact_date = str(j_rec['date']).partition('T')[0]
+    non_form_date = date.fromisoformat(transact_date)
+    form_date = non_form_date.strftime("%d-%m-%Y")
+
+    # форматируем данные карты для вывода
+    card_list = str.split(j_rec["from"])
+    card_num = card_list[-1]
+    num_hide = card_num[:6] + (len(card_num[6:-4]) * '*') + card_num[-4:]
+    num_form = num_hide[:4] + " " + num_hide[4:8] + " " + num_hide[8:12] + " " + num_hide[12:]
+    card_list[-1] = num_form
+
+    # форматируем номер счета для вывода
+    transaction_list = str.split(j_rec["to"])
+    transaction_num = transaction_list[-1]
+    transaction_list[-1] = "**" + transaction_num[-4:]
+
+    # формируем строку для вывода
+    text_record = (f"{form_date} {j_rec['description']}\n"
+                   f"{' '.join(card_list)} -> {' '.join(transaction_list)}\n"
+                   f"{j_rec['operationAmount']['amount']} "
+                   f"{j_rec['operationAmount']['currency']['name']}\n")
+    return text_record
 
 
 def print_data():
     pass
 
 
-
-print(make_sorted_ops(prepare_list(get_json_data())))
-
+x = make_sorted_ops(prepare_list(get_json_data()))
+print(formatted_data(x[0]))
