@@ -1,12 +1,14 @@
 import json
 from datetime import date
 
-def get_json_data():
+JSON_DATA_PATH = "../src/operations.json"
+
+def get_json_data(data_path):
     """
     Чтение файла json
     :return: список операций
     """
-    with open("operations.json", "r", encoding="utf-8") as json_file:
+    with open(data_path, "r", encoding="utf-8") as json_file:
         raw_json = json.loads(json_file.read())
     return raw_json
 
@@ -38,7 +40,7 @@ def make_sorted_ops(raw_json):
     return operation_date_time
 
 
-def formatted_data(json_rec):
+def formatted_date(json_rec):
     j_rec = dict(json_rec)
     # форматируем дату для вывода
     transact_date = str(j_rec['date']).partition('T')[0]
@@ -69,5 +71,5 @@ def print_data():
     pass
 
 
-x = make_sorted_ops(prepare_list(get_json_data()))
-print(formatted_data(x[0]))
+x = make_sorted_ops(prepare_list(get_json_data(JSON_DATA_PATH)))
+print(formatted_date(x[0]))
