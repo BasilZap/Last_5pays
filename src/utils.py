@@ -1,8 +1,6 @@
 import json
 from datetime import date
 
-JSON_DATA_PATH = "../src/operations.json"
-
 
 def get_json_data(data_path):
     """
@@ -117,7 +115,7 @@ def data_for_print(data_list):
     :return:
     """
     f_rec_date, desc, f_rec_card, f_rec_count, amount, name = data_list
-    text_record = (f"{f_rec_date} {desc}\n"
+    text_record = (f"\n{f_rec_date} {desc}\n"
                    f"{f_rec_card} -> {f_rec_count}\n"
-                   f"{amount} {name}\n")
+                   f"{amount} {name}")
     return text_record
