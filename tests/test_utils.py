@@ -3,7 +3,7 @@ import os
 
 
 def test_get_json_data():
-    assert utils.get_json_data('../tmp_dir/test.json') == [{"a": 1, "b": 2}]
+    assert utils.get_json_data('../course_work3/tmp_dir/test.json') == [{"a": 1, "b": 2}]
 
 
 def test_prepare_list():
