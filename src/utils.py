@@ -90,8 +90,11 @@ def formatted_card(data_list):
     """
     card_list = str.split(data_list[2])
     card_num = card_list[-1]
-    num_hide = card_num[:6] + (len(card_num[6:-4]) * '*') + card_num[-4:]
-    num_form = num_hide[:4] + " " + num_hide[4:8] + " " + num_hide[8:12] + " " + num_hide[12:]
+    if len(card_num) <= 16:
+        num_hide = card_num[:6] + (len(card_num[6:-4]) * '*') + card_num[-4:]
+        num_form = num_hide[:4] + " " + num_hide[4:8] + " " + num_hide[8:12] + " " + num_hide[12:]
+    else:
+        num_form = '**' + card_num[-4:]
     card_list[-1] = num_form
     data_list[2] = ' '.join(card_list)
     return data_list
