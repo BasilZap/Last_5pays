@@ -51,6 +51,8 @@ def get_x_records(raw_json, x=5):
     :return: Список из x элементов
     """
     rec_list = []
+    if x > len(raw_json):
+        x = len(raw_json)
     for rec in range(x):
         rec_list.append(raw_json[rec])
     return rec_list
