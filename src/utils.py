@@ -78,7 +78,7 @@ def formatted_date(data_list):
     """
     transact_date = str(data_list[0]).partition('T')[0]
     non_form_date = date.fromisoformat(transact_date)
-    data_list[0] = non_form_date.strftime("%d-%m-%Y")
+    data_list[0] = non_form_date.strftime("%d.%m.%Y")
     return data_list
 
 
