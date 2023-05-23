@@ -2,7 +2,7 @@
 from src.utils import *
 
 # Путь к файлу json
-JSON_DATA_PATH = "../src/operations.json"
+JSON_DATA_PATH = "src/operations.json"
 
 
 def main():
