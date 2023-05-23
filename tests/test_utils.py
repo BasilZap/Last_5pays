@@ -1,9 +1,8 @@
 from src import utils
-import os
 
 
 def test_get_json_data():
-    assert utils.get_json_data('../course_work3/tmp_dir/test.json') == [{"a": 1, "b": 2}]
+    assert utils.get_json_data('tmp_dir/test.json') == [{"a": 1, "b": 2}]
 
 
 def test_prepare_list():
@@ -35,8 +34,8 @@ def test_formatted_rec():
 
 
 def test_formatted_date():
-    assert utils.formatted_date(['2019-11-10']) == ['10-11-2019']
-    assert utils.formatted_date(['2019-08-26T10:50:58.294041']) == ['26-08-2019']
+    assert utils.formatted_date(['2019-11-10']) == ['10.11.2019']
+    assert utils.formatted_date(['2019-08-26T10:50:58.294041']) == ['26.08.2019']
 
 
 def test_formatted_card():
@@ -49,5 +48,5 @@ def test_formatted_count():
 
 
 def test_data_for_print():
-    assert utils.data_for_print(['2019', 'Перевод', 'Maestro', 'Счет', '31', 'руб.']) == '\n2019 Перевод\nMaestro -> Счет\n31 руб.'
-
+    assert utils.data_for_print(['2019', 'Перевод', 'Maestro', 'Счет', '31', 'руб.']) == '\n2019 Перевод\nMaestro -> ' \
+                                                                                         'Счет\n31 руб.'
